@@ -13,7 +13,8 @@
                         </div>
                     </div>
                 @endforeach
-                <a class="py-2 text-center text-white font-bold bg-blue-600 rounded" href="{{ route('admin.place.create') }}">ADICIONAR NOVO LUGAR</a>
+                <a class="py-2 text-center text-white font-bold bg-green-800 rounded" href="{{ route('admin.place.create') }}">ADICIONAR NOVO LUGAR</a>
+                <a class="bg-blue-500 text-center text-white font-bold rounded mt-8" href="{{ route('admin.auralization') }}">Voltar</a>
             </div>
         </div>
     </div>

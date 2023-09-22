@@ -7,7 +7,7 @@
                     <a class="bg-white rounded py-8 text-center font-bold" href="{{ route('admin.place.index') }}">
                         LUGARES
                     </a>
-                    <a class="bg-white rounded py-8 text-center font-bold" href="#">
+                    <a class="bg-white rounded py-8 text-center font-bold" href="{{ route('admin.building.index') }}">
                         CONSTRUÇÕES
                     </a>
                     <a class="bg-white rounded py-8 text-center font-bold" href="#">

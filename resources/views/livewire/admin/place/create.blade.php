@@ -4,6 +4,7 @@
             <p class="text-center font-bold">CRIAÇÃO</p>
             <div class="px-4">
                 <form wire:submit="save" class="flex flex-col gap-2">
+                    <label class="font-bold">Digite o nome:</label>
                     <input class="w-full rounded" type="text" wire:model="form.name" placeholder="Universidade Federal de Santa Catarina">
                     <button type="submit" class="w-full p-2 text-white bg-green-500 font-bold rounded">Salvar</button>
                 </form>
