@@ -2,7 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Admin\Index;
+
+use App\Livewire\Admin\Index as AdminIndex;
+use App\Livewire\Admin\Auralization;
+use App\Livewire\Admin\Place\Index as PlaceIndex;
+use App\Livewire\Admin\Place\Show as PlaceShow;
+use App\Livewire\Admin\Place\Create as PlaceCreate;
+use App\Livewire\Admin\Place\Edit as PlaceEdit;
+use App\Livewire\Admin\Place\Delete as PlaceDelete;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +34,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/admin', AdminIndex::class)->name('admin');
+    Route::get('/admin/auralization', Auralization::class)->name('admin.auralization');
+    Route::get('/admin/place', PlaceIndex::class)->name('admin.place.index');
+    Route::get('/admin/place/create', PlaceCreate::class)->name('admin.place.create');
+    Route::get('/admin/place/{id}', PlaceShow::class)->name('admin.place.show');
+    Route::get('/admin/place/{id}/edit', PlaceEdit::class)->name('admin.place.edit');
+    Route::get('/admin/place/{id}/delete', PlaceDelete::class)->name('admin.place.delete');
 });
 
-Route::get('/admin', Index::class);
 
 require __DIR__.'/auth.php';
