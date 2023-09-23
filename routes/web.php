@@ -24,6 +24,13 @@ use App\Livewire\Admin\Room\Create as RoomCreate;
 use App\Livewire\Admin\Room\Edit as RoomEdit;
 use App\Livewire\Admin\Room\Delete as RoomDelete;
 
+use App\Livewire\Admin\Measurement\Index as MeasurementIndex;
+use App\Livewire\Admin\Measurement\Show as MeasurementShow;
+use App\Livewire\Admin\Measurement\Create as MeasurementCreate;
+use App\Livewire\Admin\Measurement\Edit as MeasurementEdit;
+use App\Livewire\Admin\Measurement\Delete as MeasurementDelete;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
     Route::get('/admin', AdminIndex::class)->name('admin');
     Route::get('/admin/auralization', Auralization::class)->name('admin.auralization');
     Route::get('/admin/place', PlaceIndex::class)->name('admin.place.index');
@@ -66,6 +74,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/room/{id}', RoomShow::class)->name('admin.room.show');
     Route::get('/admin/room/{id}/edit', RoomEdit::class)->name('admin.room.edit');
     Route::get('/admin/room/{id}/delete', RoomDelete::class)->name('admin.room.delete');
+
+    Route::get('/admin/measurement', MeasurementIndex::class)->name('admin.measurement.index');
+    Route::get('/admin/measurement/create', MeasurementCreate::class)->name('admin.measurement.create');
+    Route::get('/admin/measurement/{id}', MeasurementShow::class)->name('admin.measurement.show');
+    Route::get('/admin/measurement/{id}/edit', MeasurementEdit::class)->name('admin.measurement.edit');
+    Route::get('/admin/measurement/{id}/delete', MeasurementDelete::class)->name('admin.measurement.delete');
 });
 
 

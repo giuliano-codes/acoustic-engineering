@@ -15,4 +15,9 @@ class Room extends Model
     {
         return $this->belongsTo(Building::class);
     }
+
+    public function measurements()
+    {
+        return $this->hasMany(Measurement::class);
+    }
 }

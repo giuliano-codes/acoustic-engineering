@@ -14,6 +14,12 @@
                 <div class="grid grid-cols-1">
                     <button class="bg-red-500 text-center text-white font-bold rounded" wire:click="delete">Confirmar Exclusão</button>
                 </div>
+                <p class="text-center font-bold">MEDIÇÕES RELACIONADAS</p>
+                @foreach($room['measurements'] as $measurement)
+                    <div class="bg-white rounded p-2 flex flex-col gap-4">
+                        <p class="text-center font-semibold">{{ $measurement['name'] }}</p>
+                    </div>
+                @endforeach
                 <p class="text-center font-bold">CONSTRUÇÃO RELACIONADA</p>
                 <div class="bg-white rounded p-2 flex flex-col gap-4">
                     <p class="text-center font-semibold">{{ $room['building']['name'] }}</p>

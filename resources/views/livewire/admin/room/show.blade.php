@@ -15,6 +15,17 @@
                     <a class="bg-yellow-500 text-center text-white font-bold rounded" href="{{ route('admin.room.edit', ['id' => $room['id']]) }}">Editar</a>
                     <a class="bg-red-500 text-center text-white font-bold rounded" href="{{ route('admin.room.delete', ['id' => $room['id']]) }}">Excluir</a>
                 </div>
+                <p class="text-center font-bold">MEDIÇÕES RELACIONADAS</p>
+                @foreach($room['measurements'] as $measurement)
+                    <div class="bg-white rounded p-2 flex flex-col gap-4">
+                        <p class="text-center font-semibold">{{ $measurement['name'] }}</p>
+                        <div class="flex flex-row-reverse gap-2">
+                            <a class="text-red-600 px-3 py-1 bg-gray-200 text-center font-bold text-sm rounded" href="{{ route('admin.measurement.delete', ['id' => $measurement['id']]) }}">Excluir</a>
+                            <a class="text-yellow-600 px-3 py-1 bg-gray-200 text-center font-bold text-sm rounded" href="{{ route('admin.measurement.edit', ['id' => $measurement['id']]) }}">Editar</a>
+                            <a class="text-green-600 px-3 py-1 bg-gray-200 text-center font-bold text-sm rounded" href="{{ route('admin.measurement.show', ['id' => $measurement['id']]) }}">Ver</a>
+                        </div>
+                    </div>
+                @endforeach
                 <p class="text-center font-bold">CONSTRUÇÃO RELACIONADA</p>
                 <div class="bg-white rounded p-2 flex flex-col gap-4">
                     <p class="text-center font-semibold">{{ $room['building']['name'] }}</p>
