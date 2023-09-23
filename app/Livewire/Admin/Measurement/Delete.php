@@ -22,6 +22,7 @@ class Delete extends Component
         $measurement->delete();
         redirect()->route('admin.measurement.index');
     }
+    
     public function render()
     {
         return view('livewire.admin.measurement.delete');

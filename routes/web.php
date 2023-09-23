@@ -30,6 +30,12 @@ use App\Livewire\Admin\Measurement\Create as MeasurementCreate;
 use App\Livewire\Admin\Measurement\Edit as MeasurementEdit;
 use App\Livewire\Admin\Measurement\Delete as MeasurementDelete;
 
+use App\Livewire\Admin\HRTF\Index as HRTFIndex;
+use App\Livewire\Admin\HRTF\Show as HRTFShow;
+use App\Livewire\Admin\HRTF\Create as HRTFCreate;
+use App\Livewire\Admin\HRTF\Edit as HRTFEdit;
+use App\Livewire\Admin\HRTF\Delete as HRTFDelete;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +86,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/measurement/{id}', MeasurementShow::class)->name('admin.measurement.show');
     Route::get('/admin/measurement/{id}/edit', MeasurementEdit::class)->name('admin.measurement.edit');
     Route::get('/admin/measurement/{id}/delete', MeasurementDelete::class)->name('admin.measurement.delete');
+
+    Route::get('/admin/hrtf', HRTFIndex::class)->name('admin.hrtf.index');
+    Route::get('/admin/hrtf/create', HRTFCreate::class)->name('admin.hrtf.create');
+    Route::get('/admin/hrtf/{id}', HRTFShow::class)->name('admin.hrtf.show');
+    Route::get('/admin/hrtf/{id}/edit', HRTFEdit::class)->name('admin.hrtf.edit');
+    Route::get('/admin/hrtf/{id}/delete', HRTFDelete::class)->name('admin.hrtf.delete');
 });
 
 

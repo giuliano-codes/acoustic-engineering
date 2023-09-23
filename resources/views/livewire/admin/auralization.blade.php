@@ -16,6 +16,9 @@
                     <a class="bg-white rounded py-8 text-center font-bold" href="{{ route('admin.measurement.index') }}">
                         MEDIÇÕES
                     </a>
+                    <a class="bg-white rounded py-8 text-center font-bold" href="{{ route('admin.hrtf.index') }}">
+                        HRTFs
+                    </a>
                 </div>
             </div>
         </div>

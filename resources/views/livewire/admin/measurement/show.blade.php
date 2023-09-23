@@ -8,6 +8,14 @@
                         <p class="font-semibold">Nome:</p>
                         <p>{{ $measurement['name'] }}</p>
                     </div>
+                    <div class="flex gap-2">
+                        <p class="font-semibold">Taxa de amostragem:</p>
+                        <p>{{ $measurement['samplerate'] }}</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <p class="font-semibold">Duração em milisegundos:</p>
+                        <p>{{ $measurement['duration'] }}</p>
+                    </div>
                     <a class="font-bold text-center text-blue-500" href="{{ asset('storage/'.$measurement['path']) }}">Arquivo de áudio</a>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
