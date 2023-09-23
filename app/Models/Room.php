@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
+
+    protected $fillable = ["name", "blueprint_path", "blueprint_type"];
+
+    public function building()
+    {
+        return $this->belongsTo(Building::class);
+    }
 }

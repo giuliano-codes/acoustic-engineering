@@ -1,7 +1,7 @@
 <div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <p class="text-center font-bold">CONTRUÇÕES</p>
+            <p class="text-center font-bold">LISTAGEM DE TODAS CONSTRUÇÕES</p>
             <div class="flex flex-col gap-4 p-4">
                 @foreach($buildings as $building)
                     <div class="bg-white rounded p-2 flex flex-col gap-4">

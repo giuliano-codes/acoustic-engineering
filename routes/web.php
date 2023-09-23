@@ -18,6 +18,12 @@ use App\Livewire\Admin\Building\Create as BuildingCreate;
 use App\Livewire\Admin\Building\Edit as BuildingEdit;
 use App\Livewire\Admin\Building\Delete as BuildingDelete;
 
+use App\Livewire\Admin\Room\Index as RoomIndex;
+use App\Livewire\Admin\Room\Show as RoomShow;
+use App\Livewire\Admin\Room\Create as RoomCreate;
+use App\Livewire\Admin\Room\Edit as RoomEdit;
+use App\Livewire\Admin\Room\Delete as RoomDelete;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +60,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/building/{id}', BuildingShow::class)->name('admin.building.show');
     Route::get('/admin/building/{id}/edit', BuildingEdit::class)->name('admin.building.edit');
     Route::get('/admin/building/{id}/delete', BuildingDelete::class)->name('admin.building.delete');
+
+    Route::get('/admin/room', RoomIndex::class)->name('admin.room.index');
+    Route::get('/admin/room/create', RoomCreate::class)->name('admin.room.create');
+    Route::get('/admin/room/{id}', RoomShow::class)->name('admin.room.show');
+    Route::get('/admin/room/{id}/edit', RoomEdit::class)->name('admin.room.edit');
+    Route::get('/admin/room/{id}/delete', RoomDelete::class)->name('admin.room.delete');
 });
 
 

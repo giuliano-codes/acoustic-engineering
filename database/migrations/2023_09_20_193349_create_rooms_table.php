@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('building_id');
+            $table->string('name');
             $table->string('blueprint_path');
             $table->string('blueprint_type');
         });

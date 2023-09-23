@@ -1,7 +1,7 @@
 <div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <p class="text-center font-bold">EDIÇÃO LUGAR</p>
+            <p class="text-center font-bold">EDITAR LUGAR</p>
             <div class="px-4 pt-8">
                 <form wire:submit="save" class="flex flex-col gap-2">
                     <label class="font-bold">Digite o nome:</label>

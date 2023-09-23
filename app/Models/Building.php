@@ -15,4 +15,9 @@ class Building extends Model
     {
         return $this->belongsTo(Place::class);
     }
+
+    public function rooms()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

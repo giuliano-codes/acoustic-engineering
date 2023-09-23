@@ -2,7 +2,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex flex-col gap-6 p-4">
-                <p class="text-center font-bold">LUGAR</p>
+                <p class="text-center font-bold">VISUALIZAÇÃO DO LUGAR</p>
                 <div class="flex gap-2">
                     <p class="font-semibold">Nome:</p>
                     <p>{{ $place['name'] }}</p>
