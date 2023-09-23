@@ -35,7 +35,9 @@ use App\Livewire\Admin\HRTF\Show as HRTFShow;
 use App\Livewire\Admin\HRTF\Create as HRTFCreate;
 use App\Livewire\Admin\HRTF\Edit as HRTFEdit;
 use App\Livewire\Admin\HRTF\Delete as HRTFDelete;
-
+use App\Models\Building;
+use App\Models\Place;
+use App\Models\Room;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,22 @@ use App\Livewire\Admin\HRTF\Delete as HRTFDelete;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/auralization', function () {
+    return view('auralization', ['places' => Place::all()]);
+});
+
+Route::get('/auralization/place/{id}', function ($id) {
+    return view('place', ['place' => Place::findOrFail($id)]);
+})->name('place');
+
+Route::get('/auralization/building/{id}', function ($id) {
+    return view('building', ['building' => Building::findOrFail($id)]);
+})->name('building');
+
+Route::get('/auralization/room/{id}', function ($id) {
+    return view('room', ['room' => Room::findOrFail($id)]);
+})->name('room');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
