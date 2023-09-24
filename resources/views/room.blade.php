@@ -2,6 +2,9 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
         <div class="flex flex-col relative">
             <div class="flex flex-col px-4 pt-4 pb-16 gap-4 bg-gray-800">
+                <div>
+                    <a class="block text-center bg-white rounded"href="{{ route('building', ['id' => $room['building']['id']]) }}">VOLTAR</a>
+                </div>
                 <audio src=""></audio>
                 <div>
                     <p class="text-center font-bold text-white uppercase">{{ $room['building']['name'] }} - {{ $room['name'] }}</p>

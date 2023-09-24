@@ -57,7 +57,7 @@ Route::get('/', function () {
 
 Route::get('/auralization', function () {
     return view('auralization', ['places' => Place::all()]);
-});
+})->name('auralization');
 
 Route::get('/auralization/place/{id}', function ($id) {
     return view('place', ['place' => Place::findOrFail($id)]);
