@@ -72,10 +72,6 @@ Route::get('/auralization/room/{id}', function ($id) {
     return view('room', ['room' => Room::findOrFail($id), 'songs' => $songs]);
 })->name('room');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
