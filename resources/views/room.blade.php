@@ -201,8 +201,8 @@
                     const path = event.target.value;
                     document.getElementById('loading').classList.remove('hidden');
                     const file = await fetch(path);
-                    document.getElementById('loading').classList.add('hidden');
                     const url = URL.createObjectURL(await file.blob())
+                    document.getElementById('loading').classList.add('hidden');
                     audioElement.src = url
                     const name = path.split('/')
                     document.getElementById('audioName').textContent = name[name.length -1]
