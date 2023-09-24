@@ -1,22 +1,33 @@
 <x-guest-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
         <div class="flex flex-col relative">
-            <div class="flex flex-col p-4 gap-4 bg-gray-800">
+            <div class="flex flex-col px-4 pt-4 pb-16 gap-4 bg-gray-800">
                 <audio src=""></audio>
                 <div>
                     <p class="text-center font-bold text-white uppercase">{{ $room['building']['name'] }} - {{ $room['name'] }}</p>
                 </div>
                 <div class="flex flex-col p-2 bg-gray-700 rounded">
+                    <select class="w-full text-center text-white rounded p-2 border bg-gray-600 border-gray-800" id="song">
+                        <option value="">Escolha um sinal de entrada</option>
+                        @foreach($songs as $song)
+                            <option value="{{ asset('storage/'.$song) }}">{{ substr($song, 6) }}</option>
+                        @endforeach
+                    </select>
+                    <p class="text-center text-sm text-white">ou</p>
                     <label for="file">
-                        <p class="text-center text-blue-400 text-sm">faça upload de um arquivo de áudio</p>
+                        <p class="text-center text-blue-400 text-sm">faça upload de um arquivo (.wav ou .mp3)</p>
                     </label>
                     <input type="file" class="hidden" id="file">
                 </div>
                 <div class="flex flex-col p-2 bg-gray-700 rounded gap-2">
-                    <select class="w-full text-center text-white rounded p-2 border bg-gray-600 border-gray-800">
-                        <option value="">Escolha um sinal para ser convoluído</option>
+                    <select class="w-full text-center text-white rounded p-2 border bg-gray-600 border-gray-800" id="impulse">
+                        <option value="">Escolha um ponto da sala</option>
+                        @foreach($room['measurements'] as $measurement)
+                            <option value="{{ asset('storage/'.$measurement['path']) }}">{{ $measurement['name'] }}</option>
+                        @endforeach
                     </select>
-                    <button class="text-center text-blue-400 text-sm">Visualizar planta baixa</button>
+                    <p class="text-center text-white font-bold">PLANTA BAIXA</p>
+                    <iframe class="w-full h-60" src="{{ asset('storage/'.$room['blueprint_path']) }}"></iframe>
                 </div>
                 <div>
                     <div class="flex content-center w-full">
@@ -36,21 +47,22 @@
             </div>
             <div class="flex flex-col bg-transparent fixed bottom-0 left-0 w-full p-2">
                 
-                <div class="rounded-xl bg-gray-700 px-2">
+                <div class="rounded-xl bg-gray-700 px-2 max-w-7xl w-full mx-auto">
+                    <p class="text-center text-white text-sm font-bold" id="audioName"></p>
                     <div>
                         <input class="w-full h-1.5" type="range" id="timeRange" value=0 step="0.01">
                     </div>
                     <div class="flex flex-row justify-between px-1">
-                        <p class="text-white text-xs" id="currentTime">00:00</p>
+                        <p class="text-white text-xs w-20" id="currentTime">00:00</p>
                         <div class="flex flex-row justify-center">
                             <button id="play" data-playing="false" role="switch" aria-checked="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-12 h-12">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-8 h-8">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
                                 </svg>
                             </button>                                          
                         </div>
-                        <p class="text-white text-xs" id="endTime">00:00</p>
+                        <p class="text-white text-xs w-20 text-end" id="endTime">00:00</p>
                     </div>
                 </div>
             </div>
@@ -98,14 +110,20 @@
                     }
                     }
                 )
+                
 
                 convolutionButton.addEventListener(
                 "change",
                 async () => {
                 if (convolutionButton.checked) {
-                    room = await convolve("room_202_stereo.wav");
-                    track.disconnect();
-                    track.connect(room).connect(analyser).connect(audioContext.destination);
+                    $url = document.getElementById('impulse').value;
+                    if ($url != '') {
+                        room = await convolve($url);
+                        track.disconnect();
+                        track.connect(room).connect(analyser).connect(audioContext.destination);
+                    } else {
+                        convolutionButton.checked = false;
+                    }
                 } else {
                     room.disconnect();
                     track.connect(analyser).connect(audioContext.destination);
@@ -116,11 +134,11 @@
             audioElement.addEventListener(
                 "timeupdate",
                 () => {
-                document.getElementById('currentTime').textContent = formatTime(audioElement.currentTime);
-                document.getElementById('endTime').textContent = formatTime(audioElement.duration);
-                document.getElementById('timeRange').min = 0;
-                document.getElementById('timeRange').max = audioElement.duration;
-                document.getElementById('timeRange').value = audioElement.currentTime;
+                    document.getElementById('currentTime').textContent = formatTime(audioElement.currentTime);
+                    document.getElementById('endTime').textContent = formatTime(audioElement.duration);
+                    document.getElementById('timeRange').min = 0;
+                    document.getElementById('timeRange').max = audioElement.duration;
+                    document.getElementById('timeRange').value = audioElement.currentTime;
                 })
 
                 audioElement.addEventListener(
@@ -149,7 +167,22 @@
                 const url = URL.createObjectURL(file)
 
                 audioElement.src = url
+
+                document.getElementById('audioName').textContent = file.name
                 })
+
+                document.getElementById('song').addEventListener(
+                'change',
+                async (event) => {
+                    const path = event.target.value;
+                    const file = await fetch(path);
+                    
+                    const url = URL.createObjectURL(await file.blob())
+                    audioElement.src = url
+                    const name = path.split('/')
+                    document.getElementById('audioName').textContent = name[name.length -1]
+                }
+            );
 
 
 
@@ -202,7 +235,7 @@
                         display: true,
                         ticks: {
                             max: 0,
-                            min: -200,
+                            min: -90,
                         },
                         scaleLabel: {
                             display: true,
@@ -253,11 +286,16 @@
             }
 
             function formatTime(seconds) {
-                minutes = Math.floor(seconds / 60);
-                minutes = (minutes >= 10) ? minutes : "0" + minutes;
-                seconds = Math.floor(seconds % 60);
-                seconds = (seconds >= 10) ? seconds : "0" + seconds;
-                return minutes + ":" + seconds;
+                if (isNaN(seconds)) {
+                    return "00:00";
+                } else {
+                    minutes = Math.floor(seconds / 60);
+                    minutes = (minutes >= 10) ? minutes : "0" + minutes;
+                    seconds = Math.floor(seconds % 60);
+                    seconds = (seconds >= 10) ? seconds : "0" + seconds;
+                    return minutes + ":" + seconds;
+                }
+                
             }
 
             async function convolve(filename) {
