@@ -33,7 +33,7 @@
                     <select class="w-full text-center text-white rounded p-2 border bg-gray-600 border-gray-800" id="impulse">
                         <option value="">Escolha um ponto da sala</option>
                         @foreach($room['measurements'] as $measurement)
-                            <option value="{{ asset('storage/'.$measurement['path']) }}">{{ $measurement['name'] }}</option>
+                            <option class="uppercase" value="{{ asset('storage/'.$measurement['path']) }}">{{ $measurement['name'] }} ({{ $measurement['type'] }})</option>
                         @endforeach
                     </select>
                     <p class="text-center text-white font-bold">PLANTA BAIXA</p>
