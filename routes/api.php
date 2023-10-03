@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:sanctum')->post('/monitoring', function (Request $request) {
+    return '';
+});
+
+Route::middleware('auth:sanctum')->post('/measurer', function (Request $request) {
+    return '';
+});

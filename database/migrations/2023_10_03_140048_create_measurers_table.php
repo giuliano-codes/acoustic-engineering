@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('measurers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->string('description');
+            $table->string('location');
         });
     }
 

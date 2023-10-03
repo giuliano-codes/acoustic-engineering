@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('monitorings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('measurer_id');
+            $table->timestamp('timestamp');
+            $table->double('laeq');
+            $table->json('freq_data');
         });
     }
 
