@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MeasurerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,5 @@ Route::middleware('auth:sanctum')->post('/monitoring', function (Request $reques
     return '';
 });
 
-Route::middleware('auth:sanctum')->post('/measurer', function (Request $request) {
-    return '';
-});
+Route::middleware('auth:sanctum')->post('/measurer', [MeasurerController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/measurer/{measurer}', [MeasurerController::class, 'addData']);

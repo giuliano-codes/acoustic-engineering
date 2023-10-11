@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Monitoring extends Model
 {
     use HasFactory;
+
+    protected $fillable = ["timestamp", "laeq", "freq_data"];
+
+    public function measurer()
+    {
+        return $this->belongsTo(Measurer::class);
+    }
 }
