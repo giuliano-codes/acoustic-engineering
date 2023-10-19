@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Index as AdminIndex;
 use App\Livewire\Admin\Auralization;
 
-use App\Livewire\Monitoring\Index as MonitoringIndex;
-use App\Livewire\Monitoring\Show as MonitoringShow;
+use App\Livewire\Measurer\Index as MeasurerIndex;
+use App\Livewire\Measurer\Show as MeasurerShow;
 
 use App\Livewire\Admin\Place\Index as PlaceIndex;
 use App\Livewire\Admin\Place\Show as PlaceShow;
@@ -75,8 +75,8 @@ Route::get('/auralization/room/{id}', function ($id) {
     return view('room', ['room' => Room::findOrFail($id), 'songs' => $songs]);
 })->name('room');
 
-Route::get('/measurer', MonitoringIndex::class)->name('measurer.index');
-Route::get('/measurer/{id}', MonitoringShow::class)->name('measurer.show');
+Route::get('/measurer', MeasurerIndex::class)->name('measurer.index');
+Route::get('/measurer/{id}', MeasurerShow::class)->name('measurer.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

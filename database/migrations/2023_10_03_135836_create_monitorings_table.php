@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('measurer_id');
             $table->timestamp('timestamp');
-            $table->double('laeq');
+            $table->double('nps');
             $table->json('freq_data');
         });
     }

@@ -30,7 +30,7 @@ class MeasurerController extends Controller
     {
         $validated = $request->validate([
             'timestamp' => 'required|date_format:Y-m-d H:i:s',
-            'laeq' => 'required|numeric',
+            'nps' => 'required|numeric',
             'freq_data.20' => 'required|numeric',
             'freq_data.25' => 'required|numeric',
             'freq_data.31_5' => 'required|numeric',
@@ -63,12 +63,12 @@ class MeasurerController extends Controller
             'freq_data.20000' => 'required|numeric'
         ]);
 
-        $measurer->monitorings()->create([
+        $data = $measurer->monitorings()->create([
             'timestamp' => $request->timestamp,
-            'laeq' => $request->laeq,
+            'nps' => $request->nps,
             'freq_data' => json_encode($request->freq_data)
         ]);
 
-        return $measurer->monitorings;
+        return $data;
     }
 }

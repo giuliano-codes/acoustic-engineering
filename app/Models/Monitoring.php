@@ -9,7 +9,11 @@ class Monitoring extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["timestamp", "laeq", "freq_data"];
+    protected $fillable = ["timestamp", "nps", "freq_data"];
+
+    protected $casts = [
+        'timestamp' => 'datetime',
+    ];
 
     public function measurer()
     {
