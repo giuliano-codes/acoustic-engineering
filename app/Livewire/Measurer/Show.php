@@ -5,9 +5,12 @@ namespace App\Livewire\Measurer;
 use App\Models\Measurer;
 use App\Models\Monitoring;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class Show extends Component
 {
+    public $name;
+    public $location;
     public $id;
     public $query = array(
         'start_date' => '',
@@ -19,10 +22,17 @@ class Show extends Component
 
     public function mount($id)
     {
+        $this->query['start_date'] = Carbon::now()->format('Y-m-d');
+        $this->query['end_date'] = Carbon::now()->format('Y-m-d');
         $this->id = $id;
+        $measurer = Measurer::find($id);
+
+        $this->name = $measurer['name'];
+        $this->location = $measurer['location'];
+
     }
 
-    public function updateDate()
+    public function updateData()
     {
         $sum_log_data = function($carry, $item)
         {
@@ -45,7 +55,7 @@ class Show extends Component
             }
         };
 
-        $monitorings = Monitoring::where('measurer_id', $this->id)->orderBy('timestamp')->get()->toArray();
+        $monitorings = Monitoring::where('measurer_id', $this->id)->whereBetween('timestamp', [$this->query['start_date']." 00:00:00", $this->query['end_date']." 23:59:59"])->orderBy('timestamp')->get()->toArray();
         $this->count = count($monitorings);
 
         $this->time_data['datas'] = array();

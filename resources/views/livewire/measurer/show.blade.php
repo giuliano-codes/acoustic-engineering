@@ -1,17 +1,16 @@
 <div>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
         <div class="flex flex-col gap-4 px-4">
-            <form class="flex flex-col gap-2" wire:poll.5s="updateDate">
+            <p class="text-white text-center font-semibold">{{ $name }} <br> {{ $location }}</p>
+            <form class="flex flex-col gap-2" wire:poll.15s="updateData">
                 <div class="flex flex-col gap-2">
                     <label class="text-white">Data de Início:</label>
-                    <input type="date" class="rounded">
+                    <input type="date" class="rounded" wire:model="query.start_date">
                     <label class="text-white">Data Final:</label>
-                    <input type="date" class="rounded">
-                </div>
-                <div>
-                    <button type="submit" class="text-center bg-gray-300 w-full rounded">Pesquisar</button>
+                    <input type="date" class="rounded" wire:model="query.end_date">
                 </div>
             </form>
+            <p class="text-white text-center text-xs">O gráfico é atualizado automaticamente a cada 15 segundos baseado no intervalo selecionado.</p>
             <div wire:ignore>
                 <div class="w-full max-w-6xl overflow-scroll lg:overflow-hidden lg:m-auto">
                     <canvas id="time_chart" class="w-full bg-gray-300">
@@ -89,7 +88,7 @@
                                     xAxes: [{
                                     type: 'time',
                                     time: {
-                                        unit: 'hour'
+                                        unit: 'day'
                                     },
                                     display: true,
                                     scaleLabel: {

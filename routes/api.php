@@ -25,3 +25,4 @@ Route::middleware('auth:sanctum')->post('/monitoring', function (Request $reques
 
 Route::middleware('auth:sanctum')->post('/measurer', [MeasurerController::class, 'store']);
 Route::middleware('auth:sanctum')->post('/measurer/{measurer}', [MeasurerController::class, 'addData']);
+Route::middleware('auth:sanctum')->delete('/measurer/{measurer}', [MeasurerController::class, 'delete']);

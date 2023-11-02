@@ -26,6 +26,11 @@ class MeasurerController extends Controller
 
     }
 
+    public function delete(Measurer $measurer)
+    {
+        $measurer->delete();
+    }
+
     public function addData(Measurer $measurer, Request $request)
     {
         $validated = $request->validate([
