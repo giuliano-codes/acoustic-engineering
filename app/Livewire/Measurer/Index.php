@@ -2,19 +2,20 @@
 
 namespace App\Livewire\Measurer;
 
+use App\Models\Measurer;
 use Livewire\Component;
 
 class Index extends Component
 {
+    public $measurers;
+
     public function mount()
     {
-        // $token = auth()->user()->createToken('medidor-01');
- 
-        // dd($token->plainTextToken);
+        $this->measurers = Measurer::all();
     }
 
     public function render()
     {
-        return view('livewire.measurer.index');
+        return view('livewire.measurer.index')->layout('layouts.guest');
     }
 }

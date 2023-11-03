@@ -7,8 +7,8 @@
                     <a class="bg-white rounded py-8 text-center font-bold" href="{{ route('admin.auralization') }}">
                         Auralização
                     </a>
-                    <a class="bg-white rounded py-8 text-center font-bold" href="#">
-                        Monitoramento
+                    <a class="bg-white rounded py-8 text-center font-bold" href="{{ route('admin.tokens') }}">
+                        Monitoramento Ambiental (Tokens)
                     </a>
                 </div>
             </div>

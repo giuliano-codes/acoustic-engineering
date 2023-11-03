@@ -6,6 +6,9 @@
                 <a class="bg-white rounded py-8 text-center font-bold" href="{{ route('auralization') }}">
                     AURALIZAÇÃO
                 </a>
+                <a class="bg-white rounded py-8 text-center font-bold" href="{{ route('measurer.index') }}">
+                    MONITORAMENTO
+                </a>
             </div>
         </div>
     </div>

@@ -38,6 +38,9 @@ use App\Livewire\Admin\HRTF\Show as HRTFShow;
 use App\Livewire\Admin\HRTF\Create as HRTFCreate;
 use App\Livewire\Admin\HRTF\Edit as HRTFEdit;
 use App\Livewire\Admin\HRTF\Delete as HRTFDelete;
+
+use App\Livewire\Admin\Tokens;
+
 use App\Models\Building;
 use App\Models\Place;
 use App\Models\Room;
@@ -114,6 +117,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/hrtf/{id}', HRTFShow::class)->name('admin.hrtf.show');
     Route::get('/admin/hrtf/{id}/edit', HRTFEdit::class)->name('admin.hrtf.edit');
     Route::get('/admin/hrtf/{id}/delete', HRTFDelete::class)->name('admin.hrtf.delete');
+
+    Route::get('/admin/tokens', Tokens::class)->name('admin.tokens');
 });
 
 
