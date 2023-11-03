@@ -20,6 +20,7 @@ class Show extends Component
     public $freq_data;
     public $time_data;
     public $count = array();
+    public $samedate = true;
 
     public function mount($id)
     {
@@ -63,6 +64,10 @@ class Show extends Component
         $this->count = count($monitorings);
 
         $this->time_data['datas'] = array();
+
+        if ($this->query['start_date'] != $this->query['end_date']) {
+            $this->samedate = false;
+        }
 
         foreach ($monitorings as $monitoring) {
             $this->time_data['datas'][] = array('x' => $monitoring['timestamp'], 'y' => $monitoring['nps']);
@@ -111,7 +116,7 @@ class Show extends Component
                 $freq_data['20000']
             );
     
-            $this->dispatch('create-chart', data: $this->freq_data, time_data: $this->time_data);
+            $this->dispatch('create-chart', data: $this->freq_data, time_data: $this->time_data, samedate: $this->samedate);
         }
     }
 

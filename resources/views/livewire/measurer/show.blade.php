@@ -5,7 +5,7 @@
                 <a class="block text-center bg-white rounded"href="{{ route('measurer.index') }}">VOLTAR</a>
             </div>
             <p class="text-white text-center font-semibold">{{ $name }} <br> {{ $location }}</p>
-            <form class="flex flex-col gap-2" wire:poll.60s="updateData">
+            <form class="flex flex-col gap-2" wire:poll.30s="updateData">
                 <div class="flex flex-col gap-2">
                     <label class="text-white">Data de Início:</label>
                     <input type="date" class="rounded" wire:model="query.start_date">
@@ -13,7 +13,7 @@
                     <input type="date" class="rounded" wire:model="query.end_date">
                 </div>
             </form>
-            <p class="text-white text-center text-xs">O gráfico é atualizado automaticamente a cada 15 segundos baseado no intervalo selecionado.</p>
+            <p class="text-white text-center text-xs">O gráfico é atualizado automaticamente a cada 30 segundos baseado no intervalo selecionado.</p>
             <div wire:ignore>
                 <div class="w-full max-w-6xl overflow-scroll lg:overflow-hidden lg:m-auto">
                     <canvas id="time_chart" class="w-full bg-gray-300">
@@ -44,7 +44,7 @@
                                     },
                                     scaleLabel: {
                                         display: true,
-                                        labelString: 'Amplitude (dB)'
+                                        labelString: 'NPS (dB)'
                                     }
                                     }],
                                     xAxes: [{
@@ -85,13 +85,13 @@
                                     },
                                     scaleLabel: {
                                         display: true,
-                                        labelString: 'Amplitude (NPS)'
+                                        labelString: 'NPS (dB)'
                                     }
                                     }],
                                     xAxes: [{
                                     type: 'time',
                                     time: {
-                                        unit: 'day'
+                                        unit: 'hour'
                                     },
                                     display: true,
                                     scaleLabel: {
@@ -116,7 +116,6 @@
             document.addEventListener('livewire:initialized', () => {
                 @this.dispatch('updateData')
                 @this.on('create-chart', (event) => {
-                    console.log('oi')
                     if (typeof chartObj !== 'undefined') {
                         chartObj.data.datasets[0].data = event.data;
                         chartObj.update();
@@ -126,6 +125,11 @@
 
                     if (typeof chartObjTime !== 'undefined') {
                         chartObjTime.data.datasets[0].data = event.time_data.datas;
+                        if (event.samedate === true) {
+                            chartObjTime.options.scales.xAxes[0].time.unit = 'hour'
+                        } else {
+                            chartObjTime.options.scales.xAxes[0].time.unit = 'day'
+                        }
                         chartObjTime.update();
                     } else {
                         chartObjTime = createTimeChart(event.time_data.datas);
