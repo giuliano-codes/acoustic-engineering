@@ -67,6 +67,8 @@ class Show extends Component
 
         if ($this->query['start_date'] != $this->query['end_date']) {
             $this->samedate = false;
+        } else {
+            $this->samedate = true;
         }
 
         foreach ($monitorings as $monitoring) {
