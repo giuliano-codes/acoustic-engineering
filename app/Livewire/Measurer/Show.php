@@ -6,6 +6,7 @@ use App\Models\Measurer;
 use App\Models\Monitoring;
 use Livewire\Component;
 use Carbon\Carbon;
+use Livewire\Attributes\On; 
 
 class Show extends Component
 {
@@ -30,8 +31,11 @@ class Show extends Component
         $this->name = $measurer['name'];
         $this->location = $measurer['location'];
 
+        $this->updateData();
+
     }
 
+    #[On('updateData')]
     public function updateData()
     {
         $sum_log_data = function($carry, $item)

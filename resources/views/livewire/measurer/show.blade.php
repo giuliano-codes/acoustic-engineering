@@ -1,8 +1,11 @@
 <div>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
         <div class="flex flex-col gap-4 px-4">
+            <div>
+                <a class="block text-center bg-white rounded"href="{{ route('measurer.index') }}">VOLTAR</a>
+            </div>
             <p class="text-white text-center font-semibold">{{ $name }} <br> {{ $location }}</p>
-            <form class="flex flex-col gap-2" wire:poll.15s="updateData">
+            <form class="flex flex-col gap-2" wire:poll.60s="updateData">
                 <div class="flex flex-col gap-2">
                     <label class="text-white">Data de Início:</label>
                     <input type="date" class="rounded" wire:model="query.start_date">
@@ -111,8 +114,9 @@
             let chartObjTime;
 
             document.addEventListener('livewire:initialized', () => {
+                @this.dispatch('updateData')
                 @this.on('create-chart', (event) => {
-                    console.log(event)
+                    console.log('oi')
                     if (typeof chartObj !== 'undefined') {
                         chartObj.data.datasets[0].data = event.data;
                         chartObj.update();
