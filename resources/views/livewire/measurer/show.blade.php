@@ -5,7 +5,7 @@
                 <a class="block text-center bg-white rounded"href="{{ route('measurer.index') }}">VOLTAR</a>
             </div>
             <p class="text-white text-center font-semibold">{{ $name }} <br> {{ $location }}</p>
-            <form class="flex flex-col gap-2" wire:poll.3s="updateData">
+            <form class="flex flex-col gap-2" wire:poll.30s="updateData">
                 <div class="flex flex-col gap-2">
                     <label class="text-white">Data de Início:</label>
                     <input type="date" class="rounded" wire:model="query.start_date">
@@ -126,10 +126,8 @@
                     if (typeof chartObjTime !== 'undefined') {
                         chartObjTime.data.datasets[0].data = event.time_data.datas;
                         if (event.samedate === true) {
-                            console.log(event.samedate)
                             chartObjTime.options.scales.xAxes[0].time.unit = 'hour'
                         } else {
-                            console.log(event.samedate)
                             chartObjTime.options.scales.xAxes[0].time.unit = 'day'
                         }
                         chartObjTime.update();
