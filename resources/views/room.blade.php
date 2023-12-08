@@ -35,6 +35,9 @@
                         @foreach($room['measurements'] as $measurement)
                             <option class="uppercase" value="{{ asset('storage/'.$measurement['path']) }}">{{ $measurement['name'] }} ({{ $measurement['type'] }})</option>
                         @endforeach
+                        @foreach($room['hrtfs'] as $hrtf)
+                            <option class="uppercase" value="{{ asset('storage/'.$hrtf['path']) }}">{{ $hrtf['name'] }} ({{ $hrtf['type'] }})</option>
+                        @endforeach
                     </select>
                     <p class="text-center text-white font-bold">PLANTA BAIXA</p>
                     <iframe class="w-full h-60" src="{{ asset('storage/'.$room['blueprint_path']) }}"></iframe>
