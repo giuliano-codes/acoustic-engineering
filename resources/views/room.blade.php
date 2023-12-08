@@ -36,7 +36,7 @@
                             <option class="uppercase" value="{{ asset('storage/'.$measurement['path']) }}">{{ $measurement['name'] }} ({{ $measurement['type'] }})</option>
                         @endforeach
                         @foreach($hrtfs as $hrtf)
-                            <option class="uppercase" value="{{ asset('storage/'.$hrtf['path']) }}">{{ $hrtf['name'] }} ({{ $hrtf['type'] }})</option>
+                            <option class="uppercase" value="{{ asset('storage/'.$hrtf['path']) }}">{{ $hrtf['name'] }}</option>
                         @endforeach
                     </select>
                     <p class="text-center text-white font-bold">PLANTA BAIXA</p>
