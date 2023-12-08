@@ -36,7 +36,7 @@ class Create extends Component
             'elevation_angle' => $this->form['elevation_angle']
         ]);
 
-        redirect()->route('admin.measurement.index');
+        redirect()->route('admin.hrtf.index');
     }
 
     public function render()
