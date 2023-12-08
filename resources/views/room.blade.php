@@ -31,7 +31,7 @@
                 </div>
                 <div class="flex flex-col p-2 bg-gray-700 rounded gap-2">
                     <select class="w-full text-center text-white rounded p-2 border bg-gray-600 border-gray-800" id="impulse">
-                        <option value="">Escolha um ponto da sala</option>
+                        <option value="">Escolha um ponto da sala ou uma HRTF</option>
                         @foreach($room['measurements'] as $measurement)
                             <option class="uppercase" value="{{ asset('storage/'.$measurement['path']) }}">{{ $measurement['name'] }} ({{ $measurement['type'] }})</option>
                         @endforeach
