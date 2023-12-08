@@ -42,6 +42,7 @@ use App\Livewire\Admin\HRTF\Delete as HRTFDelete;
 use App\Livewire\Admin\Tokens;
 
 use App\Models\Building;
+use App\Models\HRTF;
 use App\Models\Place;
 use App\Models\Room;
 use Illuminate\Support\Facades\Storage;
@@ -75,7 +76,7 @@ Route::get('/auralization/building/{id}', function ($id) {
 
 Route::get('/auralization/room/{id}', function ($id) {
     $songs = Storage::disk('public')->files('songs');
-    return view('room', ['room' => Room::findOrFail($id), 'songs' => $songs]);
+    return view('room', ['room' => Room::findOrFail($id), 'songs' => $songs, 'hrtfs' => HRTF::all()]);
 })->name('room');
 
 Route::get('/measurer', MeasurerIndex::class)->name('measurer.index');
