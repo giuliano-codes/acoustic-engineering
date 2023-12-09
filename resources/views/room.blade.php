@@ -210,6 +210,8 @@
                 
                 const url = URL.createObjectURL(file)
 
+                console.log(url)
+
                 document.getElementById('impulse').value = url
             })
 
