@@ -39,6 +39,11 @@
                             <option class="uppercase" value="{{ asset('storage/'.$hrtf['path']) }}">{{ $hrtf['name'] }}</option>
                         @endforeach
                     </select>
+                    <p class="text-center text-sm text-white">ou</p>
+                    <label for="file-response">
+                        <p class="text-center text-blue-400 text-sm">faça upload de um arquivo (.wav ou .mp3)</p>
+                    </label>
+                    <input type="file" class="hidden" id="file-response">
                     <p class="text-center text-white font-bold">PLANTA BAIXA</p>
                     <iframe class="w-full h-60" src="{{ asset('storage/'.$room['blueprint_path']) }}"></iframe>
                 </div>
@@ -196,9 +201,19 @@
                 audioElement.src = url
 
                 document.getElementById('audioName').textContent = file.name
-                })
+            })
+            
+            document.getElementById('file-impulse').addEventListener(
+                'change',
+                () => {
+                const file = document.getElementById('file-impulse').files[0];
+                
+                const url = URL.createObjectURL(file)
 
-                document.getElementById('song').addEventListener(
+                document.getElementById('impulse').value = url
+            })
+
+            document.getElementById('song').addEventListener(
                 'change',
                 async (event) => {
                     const path = event.target.value;
