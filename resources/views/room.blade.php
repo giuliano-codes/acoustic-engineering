@@ -210,7 +210,7 @@
                 
                 const url = URL.createObjectURL(file)
 
-                const opt = document.createElement(createElement('option'))
+                const opt = document.createElement('option')
                 opt.value = url
                 opt.innerHTML = file.name
 
