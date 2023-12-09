@@ -203,10 +203,10 @@
                 document.getElementById('audioName').textContent = file.name
             })
             
-            document.getElementById('file-impulse').addEventListener(
+            document.getElementById('file-response').addEventListener(
                 'change',
                 () => {
-                const file = document.getElementById('file-impulse').files[0];
+                const file = document.getElementById('file-response').files[0];
                 
                 const url = URL.createObjectURL(file)
 
