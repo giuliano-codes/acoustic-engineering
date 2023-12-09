@@ -210,9 +210,11 @@
                 
                 const url = URL.createObjectURL(file)
 
-                const opt = document.getElementById('impulse').createElement('option')
+                const opt = document.createElement(createElement('option'))
                 opt.value = url
                 opt.innerHTML = file.name
+
+                document.getElementById('impulse').appendChild(opt)
                 document.getElementById('impulse').value = url
             })
 
