@@ -1,4 +1,4 @@
-#Aplicação em modo de desenvolvimento
+# Aplicação em modo de desenvolvimento
 
 O modo mais fácil de ter a aplicação rodando em modo de desenvolvimento é usando o Docker.
 O Laravel possui um pacote específico para gerenciar os comandos Docker.
