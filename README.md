@@ -27,3 +27,4 @@ Tendo tudo instalado, para para a aplicação o comando é:
 ```
 ./vendor/bin/sail down
 ```
+Para mais informações de como o Sail funciona, [visite a página oficial](https://laravel.com/docs/10.x/sail).
