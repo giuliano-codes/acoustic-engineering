@@ -22,7 +22,7 @@ Tendo tudo instalado, para rodar a aplicação o comando é:
 ./vendor/bin/sail up
 ```
 
-Tendo tudo instalado, para para a aplicação o comando é:
+Para parar a aplicação o comando é:
 
 ```
 ./vendor/bin/sail down
